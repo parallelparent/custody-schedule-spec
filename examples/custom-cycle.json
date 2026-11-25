@@ -1,0 +1,25 @@
+{
+  "spec_version": "1.0",
+  "name": "Custom 4-3 rotation",
+  "parents": {
+    "A": {
+      "label": "Parent A"
+    },
+    "B": {
+      "label": "Parent B"
+    }
+  },
+  "rotation": {
+    "start_date": "2027-01-04",
+    "cycle": [
+      {
+        "parent": "A",
+        "days": 4
+      },
+      {
+        "parent": "B",
+        "days": 3
+      }
+    ]
+  }
+}

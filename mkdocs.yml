@@ -1,0 +1,18 @@
+site_name: custody-schedule-spec
+site_description: An open format and tool for parenting-time schedules, holiday rules and calendar export.
+site_url: https://custody-schedule-spec.readthedocs.io/en/latest/
+repo_url: https://github.com/parallelparent/custody-schedule-spec
+repo_name: custody-schedule-spec
+theme:
+  name: material
+  custom_dir: overrides
+  palette:
+    primary: indigo
+  features: [content.code.copy, navigation.sections]
+nav:
+  - Overview: index.md
+  - Common schedules explained: schedules.md
+  - Format reference: format.md
+  - Validation rules: rules.md
+  - Usage: usage.md
+markdown_extensions: [tables, admonition, toc]

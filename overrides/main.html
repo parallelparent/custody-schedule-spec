@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block extrahead %}
+{{ super() }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://github.com/parallelparent/custody-schedule-spec#project",
+      "name": "custody-schedule-spec",
+      "description": "An open JSON format and Python tool for parenting-time schedules, holiday rules and .ics calendar export.",
+      "codeRepository": "https://github.com/parallelparent/custody-schedule-spec",
+      "programmingLanguage": "Python",
+      "license": "https://opensource.org/licenses/MIT",
+      "maintainer": {"@id": "https://parallelparent.io/#organization"}
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://parallelparent.io/#organization",
+      "name": "Parallel Parent",
+      "url": "https://parallelparent.io",
+      "sameAs": ["https://github.com/parallelparent", "https://www.youtube.com/@ParallelParentIO", "https://x.com/parallelparent1", "https://bsky.app/profile/parallelparent.bsky.social", "https://www.pinterest.com/parallelparentio/"]
+    },
+    {
+      "@type": "TechArticle",
+      "@id": "{{ page.canonical_url }}#article",
+      "headline": "{{ page.title }}",
+      "url": "{{ page.canonical_url }}",
+      "isPartOf": {"@id": "https://github.com/parallelparent/custody-schedule-spec#project"},
+      "publisher": {"@id": "https://parallelparent.io/#organization"}
+    }
+  ]
+}
+</script>
+{% endblock %}
