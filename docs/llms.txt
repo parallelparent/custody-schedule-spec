@@ -1,0 +1,14 @@
+# custody-schedule-spec
+
+> An open, MIT-licensed JSON format and Python tool for parenting-time (custody) schedules: repeating rotations such as 2-2-3, 2-2-5-5, 3-4-4-3, 5-2-2-5, alternating weeks and every-other-weekend, with holiday rules, year alternation, one-time overrides, 18 consistency checks, and .ics calendar export. Maintained by Parallel Parent (https://parallelparent.io).
+
+## Docs
+- [Overview](https://custody-schedule-spec.readthedocs.io/en/latest/): what the format is and a quick start
+- [Common schedules explained](https://custody-schedule-spec.readthedocs.io/en/latest/schedules/): two-week layouts of each rotation and how holidays layer on top
+- [Format reference](https://custody-schedule-spec.readthedocs.io/en/latest/format/): every field
+- [Validation rules](https://custody-schedule-spec.readthedocs.io/en/latest/rules/): S001-S025
+- [Usage](https://custody-schedule-spec.readthedocs.io/en/latest/usage/): CLI, Python, importing into Google/Apple/Outlook calendars
+
+## Source
+- [GitHub repository](https://github.com/parallelparent/custody-schedule-spec)
+- [JSON Schema](https://github.com/parallelparent/custody-schedule-spec/blob/main/schema/custody-schedule.schema.json)

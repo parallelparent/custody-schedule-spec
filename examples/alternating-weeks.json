@@ -1,0 +1,18 @@
+{
+  "spec_version": "1.0",
+  "name": "Week on / week off",
+  "exchange_time": "17:00",
+  "parents": {
+    "A": {
+      "label": "Parent A"
+    },
+    "B": {
+      "label": "Parent B"
+    }
+  },
+  "rotation": {
+    "preset": "alternating-weeks",
+    "start_date": "2027-01-03",
+    "first_parent": "B"
+  }
+}

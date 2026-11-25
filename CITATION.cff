@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this format, please cite it as below."
+title: custody-schedule-spec
+type: software
+authors:
+  - name: Parallel Parent
+version: 1.0.0
+license: MIT
+repository-code: https://github.com/parallelparent/custody-schedule-spec
+url: https://custody-schedule-spec.readthedocs.io

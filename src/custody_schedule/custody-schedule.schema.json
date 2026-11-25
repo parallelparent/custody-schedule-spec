@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/parallelparent/custody-schedule-spec/main/schema/custody-schedule.schema.json",
+  "title": "Custody schedule",
+  "description": "A repeating parenting-time rotation plus holiday and one-time overrides. Version 1.0.",
+  "type": "object",
+  "required": ["spec_version", "parents", "rotation"],
+  "additionalProperties": false,
+  "properties": {
+    "spec_version": {"const": "1.0"},
+    "name": {"type": "string", "description": "Calendar name shown in calendar apps."},
+    "timezone": {"type": "string", "description": "IANA time zone, e.g. America/Chicago."},
+    "exchange_time": {"type": "string", "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$",
+                      "description": "Usual handoff time, 24-hour HH:MM. Informational."},
+    "parents": {
+      "type": "object", "minProperties": 2,
+      "description": "Parent ids mapped to display details. Use neutral ids like A and B.",
+      "propertyNames": {"pattern": "^[A-Za-z0-9_-]{1,32}$"},
+      "additionalProperties": {
+        "type": "object", "additionalProperties": false,
+        "properties": {"label": {"type": "string"}}
+      }
+    },
+    "rotation": {
+      "type": "object",
+      "required": ["start_date"],
+      "properties": {
+        "start_date": {"type": "string", "format": "date",
+                       "description": "First day of the first cycle."},
+        "preset": {"enum": ["alternating-weeks", "2-2-3", "2-2-5-5", "3-4-4-3",
+                            "5-2-2-5", "every-other-weekend"]},
+        "first_parent": {"type": "string", "description": "Parent who has the first block of a preset."},
+        "cycle": {
+          "type": "array", "minItems": 1,
+          "items": {"type": "object", "required": ["parent", "days"], "additionalProperties": false,
+                    "properties": {"parent": {"type": "string"},
+                                   "days": {"type": "integer", "minimum": 1}}}
+        }
+      },
+      "oneOf": [{"required": ["preset"], "not": {"required": ["cycle"]}},
+                {"required": ["cycle"], "not": {"anyOf": [{"required": ["preset"]},
+                                                          {"required": ["first_parent"]}]}}],
+      "additionalProperties": false
+    },
+    "recurring_overrides": {
+      "type": "array",
+      "items": {
+        "type": "object", "required": ["name", "month"], "additionalProperties": false,
+        "properties": {
+          "name": {"type": "string"},
+          "month": {"type": "integer", "minimum": 1, "maximum": 12},
+          "day": {"type": "integer", "minimum": 1, "maximum": 31},
+          "weekday": {"type": "string"},
+          "nth": {"type": "integer", "enum": [1, 2, 3, 4, 5, -1]},
+          "offset_days": {"type": "integer", "description": "Shift the start relative to the anchor date."},
+          "days": {"type": "integer", "minimum": 1, "default": 1},
+          "parent": {"type": "string"},
+          "parent_even_years": {"type": "string"},
+          "parent_odd_years": {"type": "string"}
+        }
+      }
+    },
+    "overrides": {
+      "type": "array",
+      "items": {
+        "type": "object", "required": ["start", "end", "parent"], "additionalProperties": false,
+        "properties": {
+          "name": {"type": "string"},
+          "start": {"type": "string", "format": "date"},
+          "end": {"type": "string", "format": "date", "description": "Inclusive."},
+          "parent": {"type": "string"}
+        }
+      }
+    }
+  }
+}
